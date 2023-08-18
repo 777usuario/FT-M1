@@ -4,8 +4,11 @@
 
 Determiná que será impreso en la consola, sin ejecutar el código.
 
-> Investiga cuál es la diferencia entre declarar una variable con `var` y directamente asignarle un valor.
-
+> Investiga cuál es la diferencia entre declarar una variable con `var` y directamente asignarle un valor. 
+   VARIABLE DECLARADA CON VAR     &&     VARIABLE DIRECTA
+   - se puede usar la variable         - Esta es global se supone que son mala practicas
+   siempre y cuando este declarada       se usa y se puede tener acceso a ella antes o despues de declararla. 
+   antes, no despues.                                   
 ```javascript
 x = 1;
 var a = 5;
@@ -77,22 +80,22 @@ console.log(pm);
 ¿Cuál crees que será el resultado de la ejecución de estas operaciones?:
 
 ```javascript
-6 / "3"
-"2" * "3"
-4 + 5 + "px"
-"$" + 4 + 5
-"4" - 2
-"4px" - 2
-7 / 0
-{}[0]
-parseInt("09")
-5 && 2
-2 && 5
-5 || 0
-0 || 5
-[3]+[3]-[10]
-3>2>1
-[] == ![]
+6 / "3"           // 2
+"2" * "3"         // 6
+4 + 5 + "px"      // 9px
+"$" + 4 + 5       // $9
+"4" - 2           // 2
+"4px" - 2         // NaN
+7 / 0             // infinity
+{}[0]             // underfine
+parseInt("09")    // 9
+5 && 2            // 2
+2 && 5            // 5
+5 || 0            // 5
+0 || 5            // 5
+[3]+[3]-[10]      // 23
+3>2>1             // false
+[] == ![]         // true
 ```
 
 > Si te quedó alguna duda repasá con [este artículo](http://javascript.info/tutorial/object-conversion).
@@ -102,12 +105,11 @@ parseInt("09")
 ¿Cuál es el output o salida en consola luego de ejecutar este código? Explicar por qué:
 
 ```javascript
-function test() {
-   console.log(a);
-   console.log(foo());
-
-   var a = 1;
-   function foo() {
+function test() {   
+   console.log(a);        
+   console.log(foo());    // El output o salida en ésta linea es está ¿porque?
+   var a = 1;             // El valor de la variable declarada con var no puede estar antes sin ser declarada.
+   function foo() {       // - tiene que estar despues de haberse declarado por que el resultado es undefined. 
       return 2;
    }
 }
@@ -128,7 +130,7 @@ function getFood(food) {
    return snack;
 }
 
-getFood(false);
+getFood(false);  // indefinida
 ```
 
 ### This
@@ -147,11 +149,11 @@ var obj = {
    },
 };
 
-console.log(obj.prop.getFullname());
-
+console.log(obj.prop.getFullname());  /*<-- esté seria la salida o output ¿Por que? al ejecutarse Javascrip, console.log(obj.prop.getFullname())
+                                       llama de forma presisa al return this.fullname dando el valor el fullname: 'Aurelio De Rosa' y no otro */
 var test = obj.prop.getFullname;
 
-console.log(test());
+console.log(test());                  
 ```
 
 ### Event loop
@@ -160,17 +162,17 @@ Considerando el siguiente código, ¿Cuál sería el orden en el que se muestra 
 
 ```javascript
 function printing() {
-   console.log(1);
+   console.log(1);             // primero ¿Por que? es un consolo.log y javascrip comienza a leer de arriba a bajo ademas no delega la tarea.
    setTimeout(function () {
-      console.log(2);
+      console.log(2);          // cuarto ¿Por que? al delegar la tarea es la ultima en entregarse ya que el setTimeout lo limita a espera..
    }, 1000);
    setTimeout(function () {
-      console.log(3);
+      console.log(3);          // tercero ¿Por que? al delegar esta tarea es la primera en estregar
    }, 0);
-   console.log(4);
+   console.log(4);             // segundo ¿Por que? es un consolo.log y no tiene que esperar como los setTimeout.
 }
 
-printing();
+printing();                    //1, 4, 3, 2            
 ```
 
 </br >
