@@ -10,9 +10,50 @@ Implementar la clase LinkedList, definiendo los siguientes métodos:
   search(isEven), donde isEven es una función que retorna true cuando recibe por parámetro un número par, busca un nodo cuyo valor sea un número par.
   En caso de que la búsqueda no arroje resultados, search debe retornar null.
 */
-function LinkedList() {}
+function LinkedList() {
+  this.head = null;
+}
 
-function Node(value) {}
+function Node(value) {
+  this.value = value;
+  this.next = null;
+}
+
+LinkedList.prototype.add = function(value) {
+  let newNode = new Node(value);
+  let current = this.head;
+  // verificamos que la lisa esté vacia;
+  if (!current) {
+    this.head = newNode;
+    return newNode;
+  }
+  while(current.next){
+    current = current.next;
+  }
+  current.next = null;
+  return 
+};
+LinkedList.prototype.remove = function () {
+  let current = this.head;
+  if (!current) return null;
+  if (!current.next) {
+    this.head = null;
+    return current.value;
+  }
+  while (current.next.next) {
+    current = current.next;
+  }
+  let aux = current.next;
+  current.next = null;
+  return aux.value;
+};
+LinkedList.prototype.search = function () {
+  let LinkedList = new LinkedList();
+  LinkedList.add('first');
+  LinkedList.add('second');
+  LinkedList.remove();
+  console.log(LinkedList);
+};
 
 /* EJERCICIO 2
 Implementar la clase HashTable.
