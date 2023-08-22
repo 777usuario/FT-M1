@@ -14,9 +14,16 @@ Secuencia:  0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
 Como ejercicio adicional y completamente opcional, al terminar de resolver este problema pueden intentar definir funciones que logren los mismos resultados pero de manera iterativa.
 */
 
-function nFactorial(n) {}
+function nFactorial(n) {
+  if (n < 2) return n;
+  return n * nFactorial(n - 1);       // Este linea calcula el factorial de forma adstracta para mi;
+}
 
-function nFibonacci(n) {}
+
+function nFibonacci(n) {
+  if (n < 2) return n;
+  return nFibonacci(n - 1) + nFibonacci(n - 2);  // 
+}
 
 /*
 Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde el primer elemento que ingresa es el primero que se quita. Definir los siguientes métodos:
@@ -27,7 +34,22 @@ Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde e
 Pueden utilizar class o función constructora.
 */
 
-function Queue() {}
+function Queue() {
+  this.arr =  [];
+}
+
+Queue.prototype.enqueue = function (value) {
+  this.arr.push(value);
+};
+Queue.prototype.dequeue = function () {
+  return this.arr.shift();
+};
+Queue.prototype.size = function () {
+  return this.arr.length;
+};
+
+var queue = new Queue();
+queue.enqueue(); 
 
 /*⚠️ No modificar nada debajo de esta línea ⚠️*/
 module.exports = {
